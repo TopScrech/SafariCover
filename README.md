@@ -40,7 +40,7 @@ import SafariCover
 
 then add this view modifier to any view and don't forget to create a @State or @Published property
 ```
-.safariCover($isPresented, "https://github.com/TopScrech")
+.safariCover($isPresented, url: "https://github.com/TopScrech")
 ```
 
 ### Get started with SafariCover today and enhance your app's browsing capabilities with ease!
