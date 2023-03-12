@@ -28,7 +28,7 @@ https://github.com/TopScrech/SafariCover
 or adding it to the `dependencies` value of your `Package.swift`:
 ```swift
 dependencies: [
-    .package(url: "https://github.com/TopScrech/SafariCover", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/TopScrech/SafariCover", .branchItem("main"))
 ]
 ```
 
