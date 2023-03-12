@@ -2,7 +2,7 @@
 SafariCover is a Swift package that provides an easy-to-use interface for displaying web content within your iOS app using the Safari View Controller. This package allows developers to quickly and easily add in-app browsing functionality to their apps, without having to deal with complex webview implementations
 
 ### Features:
-- Supports iOS 13.0 and later
+- Supports iOS 14.0 and later
 - Offers a view modifier that enables full-screen Safari browsing with a single line of code
 - Handles common Safari View Controller features, such as navigation buttons and status bar styling, automatically
 - Compatible with multiple URL schemes, including HTTP, HTTPS, and custom app-specific schemes
@@ -15,7 +15,7 @@ SafariCover is a Swift package that provides an easy-to-use interface for displa
 - Offers peace of mind with error handling for easy debugging and maintenance
 
 ## Installation
-Ready to use on iOS 13.0 and later. Supports iOS, iPadOS and macOS
+Ready to use on iOS 14.0 and later. Supports iOS, iPadOS and macOS
 
 ### Swift Package Manager
 
@@ -28,7 +28,7 @@ https://github.com/TopScrech/SafariCover
 or adding it to the `dependencies` value of your `Package.swift`:
 ```swift
 dependencies: [
-    .package(url: "https://github.com/TopScrech/SafariCover", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/TopScrech/SafariCover", .branchItem("main"))
 ]
 ```
 
