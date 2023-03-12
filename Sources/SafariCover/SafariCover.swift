@@ -48,6 +48,17 @@ public extension View {
         self.modifier(SafariCover(isPresented: isPresented, url: UniversalURL(url)))
     }
     
+//    func safariCover(_ isPresented: Binding<Bool>, url: URL) -> some View {
+//        self.modifier(SafariCover(isPresented: isPresented, url: UniversalURL(url)))
+//    }
+}
+
+@available(iOS 14.0, *)
+public extension View {
+//    func safariCover(_ isPresented: Binding<Bool>, url: String) -> some View {
+//        self.modifier(SafariCover(isPresented: isPresented, url: UniversalURL(url)))
+//    }
+//    
     func safariCover(_ isPresented: Binding<Bool>, url: URL) -> some View {
         self.modifier(SafariCover(isPresented: isPresented, url: UniversalURL(url)))
     }
