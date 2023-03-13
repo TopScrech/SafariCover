@@ -2,7 +2,7 @@
 SafariCover is a Swift package that provides an easy-to-use interface for displaying web content within your iOS app using the Safari View Controller. This package allows developers to quickly and easily add in-app browsing functionality to their apps, without having to deal with complex webview implementations
 
 ### Features:
-- Supports iOS 14.0 and later
+- Ready to use on iOS 14.0 and later. Supports iPadOS and macOS as well 
 - Offers a view modifier that enables full-screen Safari browsing with a single line of code
 - Handles common Safari View Controller features, such as navigation buttons and status bar styling, automatically
 - Compatible with multiple URL schemes, including HTTP, HTTPS, and custom app-specific schemes
@@ -15,30 +15,27 @@ SafariCover is a Swift package that provides an easy-to-use interface for displa
 - Offers peace of mind with error handling for easy debugging and maintenance
 
 ## Installation
-Ready to use on iOS 14.0 and later. Supports iOS, iPadOS and macOS
-
 ### Swift Package Manager
 
-In Xcode go to `File` -> `Add Packages...` and insert url: 
-
+To add the SafariCover package to your Xcode project, navigate to File -> Add Packages... and insert the following URL:
 ```
 https://github.com/TopScrech/SafariCover
 ```
 
-or adding it to the `dependencies` value of your `Package.swift`:
-```swift
+Alternatively, you can include it as a dependency in the dependencies value of your Package.swift:
+```
 dependencies: [
     .package(url: "https://github.com/TopScrech/SafariCover", .branchItem("main"))
 ]
 ```
 
 ## Usage
-Make sure to import SafariCover library
+Make sure to import SafariCover library into your project:
 ```
 import SafariCover
 ```
 
-then add this view modifier to any view and don't forget to create a @State or @Published property
+Then, add the .safariCover view modifier to any view, making sure to create a @State or @Published property to control the presentation:
 ```
 .safariCover($isPresented, url: "https://github.com/TopScrech")
 ```
