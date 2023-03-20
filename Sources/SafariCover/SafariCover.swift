@@ -43,11 +43,9 @@ struct SafariCover: ViewModifier {
 
 @available(iOS 14.0, *)
 public extension View {
-    func safariCover(_ isPresented: Binding<Bool>, url: String) -> some View {
-        modifier(SafariCover(isPresented: isPresented, url: UniversalURL(url)!))
-    }
-    
-    func safariCover(_ isPresented: Binding<Bool>, url: URL) -> some View {
-        modifier(SafariCover(isPresented: isPresented, url: UniversalURL(url)))
+    func safariCover(_ isPresented: Binding<Bool>, url: URL?) -> some View {
+        let fallbackURL = URL(string: "https://topscrech.dev/invalidurl")!
+        let universalURL = url.map(UniversalURL.init) ?? UniversalURL(fallbackURL)
+        return modifier(SafariCover(isPresented: isPresented, url: universalURL))
     }
 }
