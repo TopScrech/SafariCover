@@ -4,12 +4,15 @@ import SafariServices
 struct UniversalURL {
     var urlRepresentation: URL
     
-    init?(_ urlString: String) {
-        guard let url = URL(string: urlString) else {
+    static let fallbackURLString = "https://topscrech.dev/invalidurl"
+    
+    init(_ urlString: String) {
+        if let url = URL(string: urlString) {
+            self.urlRepresentation = url
+        } else {
             print("Invalid URL string: \(urlString)")
-            return nil
+            self.urlRepresentation = URL(string: Self.fallbackURLString)!
         }
-        self.urlRepresentation = url
     }
     
     init(_ url: URL) {
@@ -44,10 +47,12 @@ struct SafariCover: ViewModifier {
 @available(iOS 14.0, *)
 public extension View {
     func safariCover(_ isPresented: Binding<Bool>, url: String) -> some View {
-        modifier(SafariCover(isPresented: isPresented, url: UniversalURL(url)!))
+        let universalURL = UniversalURL(url)
+        return modifier(SafariCover(isPresented: isPresented, url: universalURL))
     }
     
     func safariCover(_ isPresented: Binding<Bool>, url: URL) -> some View {
-        modifier(SafariCover(isPresented: isPresented, url: UniversalURL(url)))
+        let universalURL = UniversalURL(url)
+        return modifier(SafariCover(isPresented: isPresented, url: universalURL))
     }
 }
