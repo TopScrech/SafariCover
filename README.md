@@ -1,4 +1,4 @@
-# SafariCover: Effortless In-App Browsing for iOS Apps
+# SafariCover: Effortless In-App Browsing for SwiftUI Apps
 SafariCover is a powerful Swift package designed to simplify the process of integrating web content within your iOS app using the Safari View Controller. With an intuitive interface, this package enables developers to effortlessly add in-app browsing functionality to their apps, without the complexities of webview implementations.
 
 ### Features:
