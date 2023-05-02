@@ -17,7 +17,7 @@ struct SafariButton<Content: View>: View {
     let url: String
     let label: Content
     
-    init(showSafari: Binding<Bool>, url: String, @ViewBuilder label: () -> Content) {
+    init(_ showSafari: Binding<Bool>, url: String, @ViewBuilder label: () -> Content) {
         self._showSafari = showSafari
         self.url = url
         self.label = label()
