@@ -12,18 +12,18 @@ public func openSafari(_ url: String, completion: @escaping () -> Void = {}) {
 }
 
 @available(iOS 14, macOS 11, tvOS 14, watchOS 7, *)
-struct SafariButton<Content: View>: View {
+public struct SafariButton<Content: View>: View {
     @Binding var showSafari: Bool
     let url: String
     let label: Content
     
-    init(_ showSafari: Binding<Bool>, url: String, @ViewBuilder label: () -> Content) {
+    public init(_ showSafari: Binding<Bool>, url: String, @ViewBuilder label: () -> Content) {
         _showSafari = showSafari
         self.url = url
         self.label = label()
     }
     
-    var body: some View {
+    public var body: some View {
         Menu {
             Button {
                 showSafari = true
