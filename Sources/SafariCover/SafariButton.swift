@@ -15,7 +15,43 @@ public func openSafari(_ url: String, completion: @escaping () -> Void = {}) {
 public struct SafariButton<Content: View>: View {
     let url: String
     let label: Content
-    let content: Content
+    
+    public init(
+        _ url: String,
+        @ViewBuilder label: () -> Content
+    ) {
+        self.url = url
+        self.label = label()
+    }
+    
+    @State private var showSafari = false
+    
+    public var body: some View {
+        Menu {
+            Section {
+                Button {
+                    showSafari = true
+                } label: {
+                    Label("In-app Safari", systemImage: "safari")
+                }
+                
+                Button {
+                    openSafari(url)
+                } label: {
+                    Label("Safari", systemImage: "safari.fill")
+                }
+            }
+        } label: {
+            label
+        }
+        .safariCover($showSafari, url: url)
+    }
+}
+
+@available(iOS 14, macOS 11, tvOS 14, watchOS 7, *)
+public struct SafariMenu<Content: View>: View {
+    let url: String
+    let label, content: Content
     
     public init(
         _ url: String,
