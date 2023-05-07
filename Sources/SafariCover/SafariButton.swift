@@ -46,7 +46,8 @@ public struct SafariButton<Content: View>: View {
     }
 }
 
-@available(iOS 14, macOS 11, tvOS 14, watchOS 7, *)
+@available(iOS 16.1, macOS 13.1, tvOS 16.1, watchOS 9.1, *)
+//@available(iOS 14, macOS 11, tvOS 14, watchOS 7, *)
 public struct SafariMenu<MenuLabel, Content> where MenuLabel: View, Content: View {
     let url: String
     let label: MenuLabel
