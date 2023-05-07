@@ -20,7 +20,7 @@ public struct SafariButton<Content: View>: View {
     public init(
         _ url: String,
         @ViewBuilder label: () -> Content,
-        @ViewBuilder content: () -> Content = { EmptyView() }
+        @ViewBuilder content: () -> Content
     ) {
         self.url = url
         self.label = label()
