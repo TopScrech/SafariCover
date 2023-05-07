@@ -45,7 +45,6 @@ public struct SafariButton<Content: View>: View {
         .safariCover($showSafari, url: url)
     }
 }
-//struct Menu<Label, Content> where Label : View, Content : View
 
 @available(iOS 14, macOS 11, tvOS 14, watchOS 7, *)
 public struct SafariMenu<MenuLabel, Content> where MenuLabel: View, Content: View {
