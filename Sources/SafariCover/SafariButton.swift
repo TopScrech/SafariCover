@@ -28,18 +28,16 @@ public struct SafariButton<Content: View>: View {
     
     public var body: some View {
         Menu {
-            Section {
-                Button {
-                    showSafari = true
-                } label: {
-                    Label("In-app Safari", systemImage: "safari")
-                }
-                
-                Button {
-                    openSafari(url)
-                } label: {
-                    Label("Safari", systemImage: "safari.fill")
-                }
+            Button {
+                showSafari = true
+            } label: {
+                Label("In-app Safari", systemImage: "safari")
+            }
+            
+            Button {
+                openSafari(url)
+            } label: {
+                Label("Safari", systemImage: "safari.fill")
             }
         } label: {
             label
@@ -47,15 +45,17 @@ public struct SafariButton<Content: View>: View {
         .safariCover($showSafari, url: url)
     }
 }
+//struct Menu<Label, Content> where Label : View, Content : View
 
 @available(iOS 14, macOS 11, tvOS 14, watchOS 7, *)
-public struct SafariMenu<Content: View>: View {
+public struct SafariMenu<MenuLabel, Content> where MenuLabel: View, Content: View {
     let url: String
-    let label, content: Content
+    let label: MenuLabel
+    let content: Content
     
     public init(
         _ url: String,
-        @ViewBuilder label: () -> Content,
+        @ViewBuilder label: () -> MenuLabel,
         @ViewBuilder content: () -> Content
     ) {
         self.url = url
