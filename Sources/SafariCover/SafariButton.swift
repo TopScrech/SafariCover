@@ -15,16 +15,16 @@ public func openSafari(_ url: String, completion: @escaping () -> Void = {}) {
 public struct SafariButton<Content: View>: View {
     let url: String
     let label: Content
-    let content: () -> Content
+    let content: Content
     
     public init(
         _ url: String,
         @ViewBuilder label: () -> Content,
-        @ViewBuilder content: @escaping () -> Content = { EmptyView() as! Content }
+        @ViewBuilder content: () -> Content = { EmptyView() }
     ) {
         self.url = url
         self.label = label()
-        self.content = content
+        self.content = content()
     }
     
     @State private var showSafari = false
@@ -45,7 +45,7 @@ public struct SafariButton<Content: View>: View {
                 }
             }
             
-            content()
+            content
         } label: {
             label
         }
