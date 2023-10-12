@@ -1,4 +1,5 @@
 import SwiftUI
+#if canImport(SafariServices)
 import SafariServices
 
 struct UniversalURL {
@@ -8,10 +9,10 @@ struct UniversalURL {
     
     init(_ urlString: String) {
         if let url = URL(string: urlString) {
-            self.urlRepresentation = url
+            urlRepresentation = url
         } else {
             print("Invalid URL string: \(urlString)")
-            self.urlRepresentation = URL(string: Self.fallbackURLString)!
+            urlRepresentation = URL(string: Self.fallbackURLString)!
         }
     }
     
@@ -20,6 +21,7 @@ struct UniversalURL {
     }
 }
 
+#if !os(macOS)
 struct SafariView: UIViewControllerRepresentable {
     let url: UniversalURL
     
@@ -47,12 +49,12 @@ struct SafariCover: ViewModifier {
 @available(iOS 14.0, *)
 public extension View {
     func safariCover(_ isPresented: Binding<Bool>, url: String) -> some View {
-        let universalURL = UniversalURL(url)
-        return modifier(SafariCover(isPresented: isPresented, url: universalURL))
+        modifier(SafariCover(isPresented: isPresented, url: UniversalURL(url)))
     }
     
     func safariCover(_ isPresented: Binding<Bool>, url: URL) -> some View {
-        let universalURL = UniversalURL(url)
-        return modifier(SafariCover(isPresented: isPresented, url: universalURL))
+        modifier(SafariCover(isPresented: isPresented, url: UniversalURL(url)))
     }
 }
+#endif
+#endif
