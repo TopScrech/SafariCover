@@ -1,6 +1,6 @@
 #if os(iOS)
+
 import SwiftUI
-import UIKit
 
 @available(iOS 10, *)
 public func openSafari(_ url: String, completion: @escaping () -> Void = {}) {
@@ -45,4 +45,5 @@ public struct SafariButton<Content: View>: View {
         .safariCover($showSafari, url: url)
     }
 }
+
 #endif
