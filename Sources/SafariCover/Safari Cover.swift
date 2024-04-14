@@ -1,5 +1,6 @@
-import SwiftUI
 #if canImport(SafariServices)
+
+import SwiftUI
 import SafariServices
 
 struct UniversalURL {
@@ -25,6 +26,10 @@ struct UniversalURL {
 struct SafariView: UIViewControllerRepresentable {
     let url: UniversalURL
     
+    init(_ url: UniversalURL) {
+        self.url = url
+    }
+    
     func makeUIViewController(context: Context) -> SFSafariViewController {
         SFSafariViewController(url: url.urlRepresentation)
     }
@@ -32,29 +37,36 @@ struct SafariView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {}
 }
 
-@available(iOS 14.0, *)
+@available(iOS 14, *)
 struct SafariCover: ViewModifier {
     @Binding var isPresented: Bool
+    
     let url: UniversalURL
+    
+    init(_ isPresented: Binding<Bool>, url: UniversalURL) {
+        _isPresented = isPresented
+        self.url = url
+    }
     
     func body(content: Content) -> some View {
         content
             .fullScreenCover(isPresented: $isPresented) {
-                SafariView(url: url)
+                SafariView(url)
                     .ignoresSafeArea()
             }
     }
 }
 
-@available(iOS 14.0, *)
+@available(iOS 14, *)
 public extension View {
     func safariCover(_ isPresented: Binding<Bool>, url: String) -> some View {
-        modifier(SafariCover(isPresented: isPresented, url: UniversalURL(url)))
+        modifier(SafariCover(isPresented, url: UniversalURL(url)))
     }
     
     func safariCover(_ isPresented: Binding<Bool>, url: URL) -> some View {
-        modifier(SafariCover(isPresented: isPresented, url: UniversalURL(url)))
+        modifier(SafariCover(isPresented, url: UniversalURL(url)))
     }
 }
+
 #endif
 #endif
