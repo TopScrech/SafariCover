@@ -74,12 +74,12 @@ public struct SafariButton <Content: View>: View {
     }
 }
 
-#endif
-
 #Preview {
-    if #available(iOS 14, *) {
+    if #available(iOS 14, macOS 11, tvOS 14, watchOS 7, *) {
         SafariButton("") {
             Text("Preview")
         }
     }
 }
+
+#endif
