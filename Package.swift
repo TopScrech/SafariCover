@@ -1,4 +1,4 @@
-// swift-tools-version: 5.10
+// swift-tools-version: 6.2.1
 import PackageDescription
 
 let package = Package(
@@ -9,12 +9,12 @@ let package = Package(
     products: [
         .library(
             name: "SafariCover",
-            targets: ["SafariCover"]),
+            targets: ["SafariCover"]
+        )
     ],
     targets: [
         .target(
             name: "SafariCover",
-            dependencies: [],
             linkerSettings: [
                 .linkedFramework("SafariServices")
             ]

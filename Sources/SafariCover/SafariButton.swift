@@ -2,6 +2,7 @@
 
 import SwiftUI
 
+@MainActor
 @available(iOS 10, *)
 public func openSafari(
     _ url: String,
@@ -31,16 +32,12 @@ public struct SafariMenu <Content: View>: View {
     
     public var body: some View {
         Menu {
-            Button {
+            Button("In-app Safari", systemImage: "safari") {
                 showSafari = true
-            } label: {
-                Label("In-app Safari", systemImage: "safari")
             }
             
-            Button {
+            Button("Safari", systemImage: "safari.fill") {
                 openSafari(url)
-            } label: {
-                Label("Safari", systemImage: "safari.fill")
             }
         } label: {
             label

@@ -12,7 +12,7 @@ struct UniversalURL {
         if let url = URL(string: urlString) {
             urlRepresentation = url
         } else {
-            print("Invalid URL string: \(urlString)")
+            print("Invalid URL string:", urlString)
             urlRepresentation = URL(string: Self.fallbackURLString)!
         }
     }
