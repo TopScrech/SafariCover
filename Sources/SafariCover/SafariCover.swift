@@ -6,14 +6,12 @@ import SafariServices
 struct UniversalURL {
     var urlRepresentation: URL
     
-    static let fallbackURLString = "https://topscrech.dev/invalidurl"
-    
     init(_ urlString: String) {
         if let url = URL(string: urlString) {
             urlRepresentation = url
         } else {
             print("Invalid URL string:", urlString)
-            urlRepresentation = URL(string: Self.fallbackURLString)!
+            urlRepresentation = URL(string: "https://topscrech.dev/invalidurl")!
         }
     }
     

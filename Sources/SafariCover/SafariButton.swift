@@ -4,11 +4,18 @@ import SwiftUI
 
 @MainActor
 @available(iOS 10, *)
-public func openSafari(
-    _ url: String,
-    completion: @escaping () -> Void = {}
-) {
+public func openSafari(_ url: String, completion: @escaping () -> Void = {}) {
     if let url = URL(string: url), UIApplication.shared.canOpenURL(url) {
+        UIApplication.shared.open(url, options: [:]) { _ in
+            completion()
+        }
+    }
+}
+
+@MainActor
+@available(iOS 10, *)
+public func openSafari(_ url: URL?, completion: @escaping () -> Void = {}) {
+    if let url, UIApplication.shared.canOpenURL(url) {
         UIApplication.shared.open(url, options: [:]) { _ in
             completion()
         }
