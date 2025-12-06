@@ -1,35 +1,34 @@
 #if canImport(SafariServices)
-
 import SwiftUI
 import SafariServices
 
 struct UniversalURL {
-    var urlRepresentation: URL
+    var urlRepresentation: URL?
     
     init(_ urlString: String) {
-        if let url = URL(string: urlString) {
-            urlRepresentation = url
-        } else {
-            print("Invalid URL string:", urlString)
-            urlRepresentation = URL(string: "https://topscrech.dev/invalidurl")!
-        }
+        urlRepresentation = URL(string: urlString)
     }
     
     init(_ url: URL) {
-        self.urlRepresentation = url
+        urlRepresentation = url
     }
 }
 
 #if !os(macOS)
 struct SafariView: UIViewControllerRepresentable {
-    let url: UniversalURL
+    let url: URL
     
-    init(_ url: UniversalURL) {
+    init?(_ urlString: String) {
+        guard let url = URL(string: urlString) else { return nil }
+        self.url = url
+    }
+    
+    init(_ url: URL) {
         self.url = url
     }
     
     func makeUIViewController(context: Context) -> SFSafariViewController {
-        SFSafariViewController(url: url.urlRepresentation)
+        SFSafariViewController(url: url)
     }
     
     func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {}
@@ -47,11 +46,15 @@ struct SafariCover: ViewModifier {
     }
     
     func body(content: Content) -> some View {
-        content
-            .fullScreenCover(isPresented: $isPresented) {
-                SafariView(url)
-                    .ignoresSafeArea()
-            }
+        if let url = url.urlRepresentation {
+            content
+                .fullScreenCover(isPresented: $isPresented) {
+                    SafariView(url)
+                        .ignoresSafeArea()
+                }
+        } else {
+            content
+        }
     }
 }
 
@@ -65,6 +68,5 @@ public extension View {
         modifier(SafariCover(isPresented, url: UniversalURL(url)))
     }
 }
-
 #endif
 #endif
