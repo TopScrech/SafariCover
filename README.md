@@ -20,22 +20,26 @@ dependencies: [
 ```
 
 ## Usage
-First, import the SafariCover library into your project:
-```
+
+Apply the `.safariCover()` view modifier to any view, using a @State or @Published property to manage its presentation:
+```swift
 import SafariCover
-```
 
-Next, apply the .safariCover() view modifier to any view, using a @State or @Published property to manage the presentation:
-```
-View {...}
-    .safariCover($isPresented, url: "https://github.com/TopScrech")
-```
+struct ContentView: View {
+    @State private var isPresented = false
 
-You can also pass a URL object:
+    private let urlString = "https://github.com/TopScrech"
+    private let url = URL(string: "https://github.com/TopScrech")!
+    
+    var body: some View {
+        Button("Open Safari") {
+            isPresented = true
+        }
+        .safariCover($isPresented, url: urlString)
+        
+        // You can also pass a URL object
+        
+        .safariCover($isPresented, url: url)
+    }
+}
 ```
-let url: URL
-View {...}
-    .safariCover($isPresented, url: url)
-```
-
-### Upgrade your app's browsing capabilities effortlessly with SafariCover today!
