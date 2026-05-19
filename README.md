@@ -2,7 +2,7 @@
 SwiftUI library for opening in-app Safari
 
 ## Supported platforms
-- iOS/iPadOS 14+
+- iOS / iPadOS 14+
 - macOS 11+
 
 ## Installation

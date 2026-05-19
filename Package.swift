@@ -1,4 +1,4 @@
-// swift-tools-version: 6.2.1
+// swift-tools-version: 6.3.2
 import PackageDescription
 
 let package = Package(
@@ -7,10 +7,7 @@ let package = Package(
         .iOS(.v13)
     ],
     products: [
-        .library(
-            name: "SafariCover",
-            targets: ["SafariCover"]
-        )
+        .library(name: "SafariCover", targets: ["SafariCover"])
     ],
     targets: [
         .target(
